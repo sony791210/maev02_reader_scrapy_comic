@@ -85,6 +85,8 @@ class PTTSpider(scrapy.Spider):
         
 
         for st in range(len(titles)):
+            if st>1:
+                break
             dir_index=-1-st
             creatDir(name,titles[dir_index],st+1)
             newurl=self.URL+paths[dir_index]
@@ -113,8 +115,6 @@ class PTTSpider(scrapy.Spider):
         newurl=response.meta['newurl']
         
         for st,page_index in enumerate(indexs):
-            if st>1:
-                break
             url=('%s#p=%s'%(newurl,page_index))
             print(url)
             # 增加判斷是否要爬取
